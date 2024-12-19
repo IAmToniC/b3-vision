@@ -8,7 +8,7 @@ function App() {
       
       <div className="container">
         <div className="image-section">
-          <img src="/touro.png" alt="Touro" />
+          <img src={`${process.env.PUBLIC_URL}/touro.png`} alt="Touro" />
         </div>
         
         <div className="content-section">
@@ -29,7 +29,7 @@ function App() {
         <div className="members">
           <span>Ana Sofia da Silva Moura</span>
           <span>Elisson Dias de Oliveira</span>
-          <span>Gabriel Fonseca</span>
+          <span>Gabriel Fonseca de Oliveira</span>
           <span>Renan Santana Costa</span>
           <span>Toni Cabral Amorim</span>
         </div>
