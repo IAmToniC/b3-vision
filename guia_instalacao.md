@@ -7,6 +7,8 @@
 
 > `npm install gh-pages --save-dev`
 
+> `npm install react-markdown`
+
 
 # Como rodar
 
