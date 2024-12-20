@@ -27,7 +27,7 @@ Nós havíamos especificado fazer o uso de **Django**, uma vez que o nosso prime
 ### Dependências
 * Node.js
 
-``` bash
+``` powershell
 npm install @mui/material @emotion/react @emotion/styled
 npm install web-vitals
 npm install gh-pages --save-dev
@@ -36,7 +36,7 @@ npm install react-markdown
 
 ### Como rodar
 
-``` bash
+``` powershell
 npm start
 npm run deploy
 ```
@@ -68,7 +68,7 @@ A interface conecta o usuário às funcionalidades do sistema, permitindo que el
 A interface do usuário foi projetada para ser simples e responsiva, permitindo fácil acesso às análises geradas. A interface exibe as notícias processadas e conta com botões para iniciar novas análises.
 Implementação em Código:
 
-``` React.js
+``` html
 return (
     <div className="App">
         <header className="App-header">
