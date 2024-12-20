@@ -24,6 +24,25 @@ Nós havíamos especificado fazer o uso de **Django**, uma vez que o nosso prime
 * A documentação do código pode ser encontrada logo abaixo.
 * As keys se encontram no front-end, mas estão na base64 pra evitar que robôs que procuram chaves de api achem. (embora nenhuma das duas APIs usadas apresentem custo, então só estou fazendo medidas de segurança muito básicas. Futuramente, quando tivermos um backend, não teremos esse problema.)
 
+### Dependências
+* Node.js
+
+``` bash
+npm install @mui/material @emotion/react @emotion/styled
+npm install web-vitals
+npm install gh-pages --save-dev
+npm install react-markdown
+```
+
+### Como rodar
+
+``` bash
+npm start
+npm run deploy
+```
+
+**OBS.:** *O comando `npm run deploy` é utilizado para modificar a branch gh-pages. Você deve ter git e estar autenticado.*
+
 ### Descrição do Projeto
 #### Coleta de Notícias Financeiras:
 A primeira etapa do projeto consiste na coleta automatizada de notícias financeiras relacionadas ao mercado de ações. Essa funcionalidade é implementada utilizando a API ***newsdata.io***, que permite buscar informações atualizadas com base em palavras-chave relevantes.
