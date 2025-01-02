@@ -30,8 +30,8 @@ function App() {
         Você é uma IA que deve analisar as notícias para oferecer uma análise sofisticada da bolsa de valores B3 e suas ações para investidores que não têm tempo de ler notícias ou não entendem de investimentos. Dito isso, você deve separar sua resposta na seguinte estrita ordem:  
         - **Análise geral da B3**  
         - **Tendência do mercado atual**  
-        - **Ações com tendências de subir**  
-        - **Ações com tendências de descer**  
+        - **Setores em destaque**  
+        - **Oportunidades e Riscos**  
         - **Tópicos relevantes**  
         - **Possíveis consequências**  
 
@@ -44,7 +44,7 @@ function App() {
       setOutput('Analisando notícias...');
 
       const aiResponse = await fetch( 
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${atob('QUl6YVN5QzlySmtZbEhjWmROSEkxQ1k3dkxXREFfOUhzV1o0X3JB')}`,
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${atob('QUl6YVN5Q0ZKRlBHMm1xaTBxcmVfczN5UnN3dXlaN1RvSXRYMkVB')}`,
         {
           method: 'POST',
           headers: {
