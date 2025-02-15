@@ -37,7 +37,14 @@ function AuthForm({onLogin}) {
                 </div>
             </div>
             <footer>
-                &copy; 2025 Todos os direitos reservados
+                Projeto desenvolvido para a cadeira de Desenvolvimento de Software.
+                <div className="members">
+                    <span>Ana Sofia da Silva Moura</span>
+                    <span>Elisson Dias de Oliveira</span>
+                    <span>Gabriel Fonseca de Oliveira</span>
+                    <span>Renan Santana Costa</span>
+                    <span>Toni Cabral Amorim</span>
+                </div>
             </footer>
         </div>
     );
