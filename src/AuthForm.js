@@ -1,23 +1,58 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import "./AuthForm.css";
 
 function AuthForm({onLogin}) {
     const [isRegistering, setIsRegistering] = useState(false);
     const [Email, setEmail] = useState("");
     const [Password, setPassword] = useState("");
+    // Simulando autenticação de usuários com um dicionário dos usuários cadastrados
+    const [users, setUsers] = useState({});
+    const [alertMessage, setAlert] = useState({message : "", color : ""});
     const handleSubmit = (event) => {
         event.preventDefault();
         if(isRegistering) {
+            if(users[Email]) {
+                setAlert({message : "Usuário já cadastrado", color : "#ff4d4d"})
+                return;
+            }
+            setUsers((listUsers) => {
+                const allUsers = {
+                    ...listUsers,
+                    [Email] : Password,
+                };
+                return allUsers;
+            });
+            setAlert({message : "Cadastro realizado com sucesso!", color : "#55b855"});
             setIsRegistering(!isRegistering);
             setEmail("");
             setPassword("");
         } else {
+            let checkEmail = users[Email]; let checkPassword = users[Email] != Password;
+            if(!checkEmail || checkPassword) {
+                let val = (!checkEmail) ? true : false;
+                setAlert((val) ? {message : "Email não cadastrado ou incorreto", color : "#e27c28"} : {message : "Senha incorreta!", color : "#e27c28"});
+                return;
+            }
+            setAlert({message : "Login realizado com sucesso!", color : "#55b855"});
             onLogin();
         }
     };
 
+    useEffect(() => {
+        if (alertMessage.message) {
+            const timer = setTimeout(() => setAlert({ message: "", color: "" }), 3500);
+            return () => clearTimeout(timer);
+        }
+    }, [alertMessage]);
+
     return (
         <div class="login-app-wrapper">
+            {alertMessage.message && (
+                <div className="custom-alert" style={{ backgroundColor: alertMessage.color }}>
+                    {alertMessage.message}
+                    <button onClick={() => setAlert({ message: "", color: "" })}>&times;</button>
+                </div>
+            )}
             <header>{isRegistering ? "Cadastro" : "Login"}</header>
             <div class="login-container">
                 <div class="login-content-section">
