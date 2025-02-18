@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
-import './App.css';
+import '../styles/App.css';
 
 function App() {
   const [output, setOutput] = useState('Aqui será exibido o output do programa.');

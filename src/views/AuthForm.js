@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
-import "./AuthForm.css";
+import "../styles/AuthForm.css";
+import emailValidation from "../utils/validators";
 
 function AuthForm({onLogin}) {
     const [isRegistering, setIsRegistering] = useState(false);
@@ -11,10 +12,15 @@ function AuthForm({onLogin}) {
     const handleSubmit = (event) => {
         event.preventDefault();
         if(isRegistering) {
+            // Checando se o e-mail já existe
             if(users[Email]) {
-                setAlert({message : "Usuário já cadastrado", color : "#ff4d4d"})
+                setAlert({message : "Usuário já cadastrado", color : "#ff4d4d"});
+                return;
+            }  else if (!emailValidation(Email)) { // Checando se o e-mail é válido
+                setAlert({message : "Formato incorreto", color : "#ff4d4d"})
                 return;
             }
+            // Adicionando o usuário ao dict de usuários
             setUsers((listUsers) => {
                 const allUsers = {
                     ...listUsers,
@@ -24,10 +30,10 @@ function AuthForm({onLogin}) {
             });
             setAlert({message : "Cadastro realizado com sucesso!", color : "#55b855"});
             setIsRegistering(!isRegistering);
-            setEmail("");
-            setPassword("");
+            setEmail(""); setPassword("");
         } else {
-            let checkEmail = users[Email]; let checkPassword = users[Email] != Password;
+            // Checando se o usuário corresponde aos dados inseridos para realizar o login
+            let checkEmail = users[Email]; let checkPassword = users[Email] !== Password;
             if(!checkEmail || checkPassword) {
                 let val = (!checkEmail) ? true : false;
                 setAlert((val) ? {message : "Email não cadastrado ou incorreto", color : "#e27c28"} : {message : "Senha incorreta!", color : "#e27c28"});
@@ -38,6 +44,7 @@ function AuthForm({onLogin}) {
         }
     };
 
+    // Depois de 3,5s o alerta some
     useEffect(() => {
         if (alertMessage.message) {
             const timer = setTimeout(() => setAlert({ message: "", color: "" }), 3500);
