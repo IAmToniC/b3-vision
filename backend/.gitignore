@@ -1,0 +1,7 @@
+segredo_gemini
+segredo_noticias
+venv/
+__pycache__/*
+*.pyc
+*.pyo
+.env
