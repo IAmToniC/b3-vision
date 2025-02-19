@@ -10,5 +10,3 @@ def hello():
 @app.route("/api/get_analysis", methods=["GET"])
 def get_analysis():
     return jsonify({"message": go()})
-
-app.run()
