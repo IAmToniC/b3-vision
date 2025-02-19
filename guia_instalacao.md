@@ -1,5 +1,5 @@
-# Dependências
-* Node.js
+### Dependências
+> `Node.js` instalado na sua máquina.
 
 > `npm install @mui/material @emotion/react @emotion/styled`
 
@@ -10,7 +10,7 @@
 > `npm install react-markdown`
 
 
-# Como rodar
+### Como rodar
 
 > `npm start`
 
