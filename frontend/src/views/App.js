@@ -6,68 +6,22 @@ function App() {
   const [output, setOutput] = useState('Aqui será exibido o output do programa.');
 
   const fetchAndProcessNews = async () => {
-    setOutput('Carregando notícias...');
+    setOutput('Carregando e analisando notícias...');
 
     try {
-      const response = await fetch(
-        `https://newsdata.io/api/1/latest?apikey=${atob('cHViXzU5MjMyM2Y0ZjJiNGUwYzY3NDViYmFmNWQ1YzZmYzZhOTQxZDc=')}&q=ibovespa OR petrobras OR vale OR mercado financeiro&size=10&language=pt`
-      );
-      const newsData = await response.json();
+        const response = await fetch('https://b3-vision-b.vercel.app/api/get_analysis');
+        const data = await response.json();
 
-      if (!newsData.results || newsData.results.length === 0) {
-        setOutput('Nenhuma notícia encontrada.');
-        return;
-      }
-
-      let prompt = '';
-      newsData.results.forEach((news, index) => {
-        prompt += `Notícia ${index + 1}:\n`;
-        prompt += `${news.title}:\n`;
-        prompt += `${news.description}\n\n`;
-      });
-
-      const analysis = `
-        Você é uma IA que deve analisar as notícias para oferecer uma análise sofisticada da bolsa de valores B3 e suas ações para investidores que não têm tempo de ler notícias ou não entendem de investimentos. Dito isso, você deve separar sua resposta na seguinte estrita ordem:  
-        - **Análise geral da B3**  
-        - **Tendência do mercado atual**  
-        - **Setores em destaque**  
-        - **Oportunidades e Riscos**  
-        - **Tópicos relevantes**  
-        - **Possíveis consequências**  
-
-        Use as seguintes notícias:  
-        ${prompt}
-
-        **Disclaimer:** Esta análise é apenas uma interpretação baseada nas notícias fornecidas. Não se trata de recomendação de investimento. Consulte um profissional qualificado antes de tomar qualquer decisão de investimento.
-      `;
-
-      setOutput('Analisando notícias...');
-
-      const aiResponse = await fetch( 
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${atob('QUl6YVN5Q0ZKRlBHMm1xaTBxcmVfczN5UnN3dXlaN1RvSXRYMkVB')}`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            contents: [{ parts: [{ text: analysis }] }],
-          }),
+        if (data.message) {
+            setOutput(data.message);
+        } else {
+            setOutput('Erro ao obter a análise.');
         }
-      );
-
-      const aiData = await aiResponse.json();
-
-      if (!aiData.candidates || aiData.candidates.length === 0) {
-        setOutput('Erro ao gerar análise.');
-        return;
-      }
-      setOutput(aiData.candidates[0].content.parts[0].text);
     } catch (error) {
-      console.error('Erro:', error);
-      setOutput('Erro ao processar as notícias. Tente novamente mais tarde.');
+        console.error('Erro ao acessar a API:', error);
+        setOutput('Erro ao processar as notícias. Tente novamente mais tarde.');
     }
-  };
+};
 
   return (
     <div className="app-wrapper">
