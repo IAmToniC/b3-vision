@@ -9,7 +9,7 @@ load_dotenv()
 
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/api/*": {"origins": "https://b3-vision.vercel.app"}})
 
 client = MongoClient(os.getenv("MONGO_URI"))
 db = client['b3_vision']  
@@ -54,5 +54,3 @@ def login():
         return jsonify({"message": "Login bem-sucedido!"}), 200
     else:
         return jsonify({"message": "Credenciais inválidas!"}), 401
-
-app.run()
