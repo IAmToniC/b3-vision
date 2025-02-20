@@ -15,6 +15,15 @@ client = MongoClient(os.getenv("MONGO_URI"))
 db = client['b3_vision']  
 users_collection = db['users'] 
 
+@app.before_request
+def handle_options():
+    if request.method == 'OPTIONS':
+        response = app.make_default_options_response()
+        headers = response.headers
+        headers['Access-Control-Allow-Origin'] = '*'
+        headers['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS'
+        headers['Access-Control-Allow-Headers'] = request.headers.get('Access-Control-Request-Headers', '*')
+        return response
 
 @app.route("/api/hello", methods=["GET"])
 def hello():
