@@ -20,7 +20,7 @@ function AuthForm({ onLogin }) {
 
     if (isRegistering) {
       try {
-        const response = await fetch(`$https://b3-vision-b.vercel.app/api/register`, {
+        const response = await fetch("https://b3-vision-b.vercel.app/api/register", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email: Email, password: Password }),
@@ -41,7 +41,7 @@ function AuthForm({ onLogin }) {
     } else {
       // Login
       try {
-        const response = await fetch(`$https://b3-vision-b.vercel.app/api/login`, {
+        const response = await fetch("https://b3-vision-b.vercel.app/api/login", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email: Email, password: Password }),
