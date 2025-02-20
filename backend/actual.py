@@ -11,7 +11,6 @@ def go():
         prompt += (f"Notícia {num_noticia}:\n")
         prompt += (f"{i['title']}:\n")
         prompt += (f"{i['description']}\n")
-        time.sleep(1/10)
         num_noticia += 1
 
 
