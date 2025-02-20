@@ -26,18 +26,21 @@ def get_analysis():
 
 @app.route("/api/register", methods=["POST"])
 def register():
-    data = request.json
-    email = data.get('email')
-    password = data.get('password')
-    
-    if not email or not password:
-        return jsonify({"message": "Email e senha são obrigatórios!"}), 400
-    
-    if users_collection.find_one({"email": email}):
-        return jsonify({"message": "Usuário já cadastrado!"}), 400
-    
-    users_collection.insert_one({"email": email, "password": password})
-    return jsonify({"message": "Usuário registrado com sucesso!"}), 201
+    try:
+        data = request.json
+        email = data.get('email')
+        password = data.get('password')
+        
+        if not email or not password:
+            return jsonify({"message": "Email e senha são obrigatórios!"}), 400
+        
+        if users_collection.find_one({"email": email}):
+            return jsonify({"message": "Usuário já cadastrado!"}), 400
+        
+        users_collection.insert_one({"email": email, "password": password})
+        return jsonify({"message": "Usuário registrado com sucesso!"}), 201
+    except Exception as e:
+        return jsonify({"message": f"Erro interno: {str(e)}"}), 500
 
 
 @app.route("/api/login", methods=["POST"])
@@ -51,3 +54,5 @@ def login():
         return jsonify({"message": "Login bem-sucedido!"}), 200
     else:
         return jsonify({"message": "Credenciais inválidas!"}), 401
+
+app.run()
