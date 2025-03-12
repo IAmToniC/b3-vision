@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request
-from actual import go
+from main import query
 from flask_cors import CORS
 from pymongo import MongoClient
 from dotenv import load_dotenv
@@ -25,13 +25,9 @@ def handle_options():
         headers['Access-Control-Allow-Headers'] = request.headers.get('Access-Control-Request-Headers', '*')
         return response
 
-@app.route("/api/hello", methods=["GET"])
-def hello():
-    return jsonify({"message": "Hello, World!"})
-
 @app.route("/api/get_analysis", methods=["GET"])
 def get_analysis():
-    return jsonify({"message": go()})
+    return jsonify({"message": query()})
 
 @app.route("/api/register", methods=["POST"])
 def register():
@@ -63,3 +59,5 @@ def login():
         return jsonify({"message": "Login bem-sucedido!"}), 200
     else:
         return jsonify({"message": "Credenciais inválidas!"}), 401
+
+app.run()
