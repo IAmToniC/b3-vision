@@ -1,7 +1,7 @@
 import networking
 import time
 
-def query():
+def query(investment_profile_data=None):
     a = networking.Networking()
     b = a.getNews(10)
     num_noticia = 1
@@ -15,7 +15,14 @@ def query():
         num_noticia += 1
     import web_scraper
     prompt += web_scraper.web_scrape(num_noticia + 1)
-    
+
+    perfil = ""
+    if investment_profile_data:
+        for key, value in investment_profile_data.items():
+            perfil += f"{key.capitalize()}: {value}\n"
+    else:
+        perfil += "Nenhum perfil de investimento fornecido.\n"
+
     prompt_definitivo = f"""Você é uma IA que deve analisar as notícias para oferecer uma análise sofisticada da bolsa de valores B3 e suas ações para investidores que não tem tempo de ler notícias ou não entendem de investimentos, dito isso, você deve separar sua resposta na seguinte estrita ordem:  
     - Análise geral da B3
     - Tendência do mercado atual
@@ -24,6 +31,11 @@ def query():
     - Tópicos relevantes
     - Possíveis consequências 
     Use as seguintes notícias: {prompt}
+
+    Após isso você deve fazer uma análise de notícias com base no perfil do usuário, coloque isso:
+    Se o usuário não fornecer nenhum dado de perfil você deve ignorar o feedback personalizado.
+    **Feedback Personalizado**:
+    Use os dados do perfil seguinte: {perfil}
 
     Coloque isso ao final:
     No início, explicite de que sites você extraiu as notícias.

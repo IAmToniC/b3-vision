@@ -9,7 +9,7 @@ load_dotenv()
 
 
 app = Flask(__name__)
-CORS(app, resources={r"/api/*": {"origins": "*"}})
+CORS(app)
 
 client = MongoClient(os.getenv("MONGO_URI"))
 db = client['b3_vision']  
@@ -27,7 +27,14 @@ def handle_options():
 
 @app.route("/api/get_analysis", methods=["GET"])
 def get_analysis():
-    return jsonify({"message": query()})
+    user_email = request.args.get("email")
+    user = users_collection.find_one({"email": user_email})
+    if user and "investmentProfile" in user:
+        investment_profile_data = user["investmentProfile"]
+    else:
+        investment_profile_data = None
+    
+    return jsonify({"message": query(investment_profile_data)})
 
 @app.route("/api/register", methods=["POST"])
 def register():
@@ -59,3 +66,32 @@ def login():
         return jsonify({"message": "Login bem-sucedido!"}), 200
     else:
         return jsonify({"message": "Credenciais inválidas!"}), 401
+
+@app.route("/api/investment-profile", methods=["POST"])
+def investment_profile():
+    try:
+        data = request.json
+        goal = data.get('goal')
+        risk = data.get('risk')
+        investment_time = data.get('investmentTime')
+        age = data.get('age')
+
+        if not goal or not risk or not investment_time or not age:
+            return jsonify({"message": "Todos os campos do perfil de investimento são obrigatórios!"}), 400
+
+        users_collection.update_one(
+            {"email": data.get("email")},
+            {"$set": {
+                "investmentProfile": {
+                    "goal": goal,
+                    "risk": risk,
+                    "investmentTime": investment_time,
+                    "age": age
+                }
+            }},
+            upsert=True
+        )
+        return jsonify({"message": "Perfil de investimento salvo com sucesso!"}), 201
+
+    except Exception as e:
+        return jsonify({"message": f"Erro interno: {str(e)}"}), 500
