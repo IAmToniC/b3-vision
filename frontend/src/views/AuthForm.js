@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "../styles/AuthForm.css";
 import emailValidation from "../utils/validators";
+import InvestmentProfileModal from "../utils/modal";
 
 function AuthForm({ onLogin }) {
   const [isRegistering, setIsRegistering] = useState(false);
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
   const [alertMessage, setAlert] = useState({ message: "", color: "" });
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
 
@@ -20,7 +22,7 @@ function AuthForm({ onLogin }) {
 
     if (isRegistering) {
       try {
-        const response = await fetch("https://b3-vision-b.vercel.app/api/register", {
+        const response = await fetch(`${API_URL}/api/register`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email: Email, password: Password }),
@@ -31,6 +33,7 @@ function AuthForm({ onLogin }) {
           setIsRegistering(false);
           setEmail("");
           setPassword("");
+          setIsModalOpen(true);
         } else {
           setAlert({ message: data.message, color: "#ff4d4d" });
         }
@@ -41,7 +44,7 @@ function AuthForm({ onLogin }) {
     } else {
       // Login
       try {
-        const response = await fetch("https://b3-vision-b.vercel.app/api/login", {
+        const response = await fetch(`${API_URL}/api/login`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email: Email, password: Password }),
@@ -122,6 +125,10 @@ function AuthForm({ onLogin }) {
           <span>Toni Cabral Amorim</span>
         </div>
       </footer>
+      <InvestmentProfileModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </div>
   );
 }
