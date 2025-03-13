@@ -25,11 +25,13 @@ def query():
     - Possíveis consequências 
     Use as seguintes notícias: {prompt}
 
-    Coloque isso ao final:
     No início, explicite de que sites você extraiu as notícias.
     
     Evite mencionar notícias que parecem ser fora do tema de mercado, e etc. Essas entraram aí por engano. Não as mencione.
 
+    Seja detalhado em suas analises. Sobre cada topico, escreva pelo menos mais do que uma linha ou frase.
+
+    Coloque isso ao final:
     **Disclaimer:** Esta análise é apenas uma interpretação baseada nas notícias fornecidas. Não se trata de recomendação de investimento.  Consulte um profissional qualificado antes de tomar qualquer decisão de investimento.    
     """
     print(prompt_definitivo)
