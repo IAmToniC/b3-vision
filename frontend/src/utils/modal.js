@@ -77,9 +77,9 @@ function InvestmentProfileModal({ isOpen, onClose }) {
           &times;
         </button>
         <h2>{questions[currentPage].question}</h2>
-        <div>
+        <div className="radio-options-box">
           {questions[currentPage].options.map((option, index) => (
-            <div key={index}>
+            <div key={index} className="radio-option-button">
               <input
                 type="radio"
                 id={`${questions[currentPage].key}-${index}`}
