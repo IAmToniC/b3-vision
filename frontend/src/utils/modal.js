@@ -15,7 +15,7 @@ function InvestmentProfileModal({ isOpen, onClose }) {
     },
     {
       question: "Qual é o seu perfil de risco?",
-      options: ["Conservador", "Moderado", "Arrojado", "Muito Arrojado"],
+      options: ["Conservador", "Moderado", "Ousado", "Muito Ousado"],
       key: "risk",
     },
     {
@@ -47,6 +47,7 @@ function InvestmentProfileModal({ isOpen, onClose }) {
   };
 
   const handleSubmit = async () => {
+    console.log(responses);
     try {
       const response = await fetch(`${API_URL}/api/investment-profile`, {
         method: "POST",
@@ -84,6 +85,7 @@ function InvestmentProfileModal({ isOpen, onClose }) {
                 id={`${questions[currentPage].key}-${index}`}
                 name={questions[currentPage].key}
                 value={option}
+                checked={responses[questions[currentPage].key] === option}
                 onChange={handleChange}
               />
               <label htmlFor={`${questions[currentPage].key}-${index}`}>{option}</label>

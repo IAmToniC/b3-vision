@@ -7,12 +7,11 @@ import os
 
 load_dotenv()
 
-
 app = Flask(__name__)
 CORS(app)
 
 client = MongoClient(os.getenv("MONGO_URI"))
-db = client['b3_vision']  
+db = client['b3_vision']
 users_collection = db['users'] 
 
 @app.before_request
@@ -95,3 +94,6 @@ def investment_profile():
 
     except Exception as e:
         return jsonify({"message": f"Erro interno: {str(e)}"}), 500
+    
+if __name__ == "__main__":
+    app.run(debug=True)
