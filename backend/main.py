@@ -1,7 +1,7 @@
 import networking
 import time
 
-def query():
+def query(investment_profile_data=None):
     a = networking.Networking()
     b = a.getNews(10)
     num_noticia = 1
@@ -15,7 +15,13 @@ def query():
         num_noticia += 1
     import web_scraper
     prompt += web_scraper.web_scrape(num_noticia + 1)
-    
+
+    perfil = ""
+    if investment_profile_data:
+        for key, value in investment_profile_data.items():
+            perfil += f"{key.capitalize()}: {value}\n"
+    else:
+        perfil += "Nenhum perfil de investimento fornecido.\n"
     prompt_definitivo = f"""Você é uma IA que deve analisar as notícias para oferecer uma análise sofisticada da bolsa de valores B3 e suas ações para investidores que não tem tempo de ler notícias ou não entendem de investimentos, dito isso, você deve separar sua resposta na seguinte estrita ordem:  
     - Análise geral da B3
     - Tendência do mercado atual
@@ -25,14 +31,23 @@ def query():
     - Possíveis consequências 
     Use as seguintes notícias: {prompt}
 
+    Após a análise geral da B3 você deve fazer uma análise de notícias com base no perfil do usuário (utilize um tom empático e encorajador, adicione também um exemplo prático e faça recomendações, não é necessário muita formalidade), coloque isso:
+    Se o usuário não fornecer nenhum dado de perfil você deve ignorar o feedback personalizado.
+    **Feedback Personalizado**:
+    Use os dados do perfil seguinte: 
+    {perfil}
+    Dito isso você deve separar sua resposta nos seguintes tópicos:
+    - Feedback Geral
+    - Exemplo Prático
+    - Recomendações (não crie uma lista do seguinte formato: 1., 2., ...)
+
+    Coloque isso ao final:
     No início, explicite de que sites você extraiu as notícias.
     
     Evite mencionar notícias que parecem ser fora do tema de mercado, e etc. Essas entraram aí por engano. Não as mencione.
 
-    Seja detalhado em suas analises. Sobre cada topico, escreva pelo menos mais do que uma linha ou frase.
-
-    Coloque isso ao final:
-    **Disclaimer:** Esta análise é apenas uma interpretação baseada nas notícias fornecidas. Não se trata de recomendação de investimento.  Consulte um profissional qualificado antes de tomar qualquer decisão de investimento.    
+    (O disclaimer deve estar em negrito e exatamente como foi escrito)
+    **Disclaimer: Esta análise é apenas uma interpretação baseada nas notícias fornecidas. Não se trata de recomendação de investimento.  Consulte um profissional qualificado antes de tomar qualquer decisão de investimento.**    
     """
     print(prompt_definitivo)
     gemini = a.promptIA(prompt_definitivo)

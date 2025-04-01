@@ -25,23 +25,48 @@ Nós havíamos especificado fazer o uso de **Django**, uma vez que o nosso prime
 * As keys se encontram no front-end, mas estão na base64 pra evitar que robôs que procuram chaves de api achem. (embora nenhuma das duas APIs usadas apresentem custo, então só estou fazendo medidas de segurança muito básicas. Futuramente, quando tivermos um backend, não teremos esse problema.)
 
 ### Dependências
+
+* Para rodar no seu local são necessárias modificações nos endpoints acessados. Você deve modificar os endpoints que acessam o deploy para acessar o seu localhost.
+* Se tiver problema de CORS, tente alterar as configurações de CORS para aceitar todas as rotas enviadas.
+
 * Node.js
 
 ``` powershell
+cd frontend
 npm install @mui/material @emotion/react @emotion/styled
 npm install web-vitals
 npm install gh-pages --save-dev
 npm install react-markdown
 ```
 
-### Como rodar
+### Como rodar o frontend
 
 ``` powershell
+---NA PASTA FRONTEND---
 npm start
 npm run deploy
 ```
 
 **OBS.:** *O comando `npm run deploy` é utilizado para modificar a branch gh-pages. Você deve ter git e estar autenticado.*
+
+* Python
+
+```powershell
+---WINDOWS---
+---CERTIFIQUE-SE QUE O PYTHON ESTÁ INSTALADO---
+cd backend
+python -m venv venv
+venv/Scripts/activate
+pip install requirements.txt -r
+```
+
+### Como rodar o backend
+
+```powershell
+---NA PASTA BACKEND---
+python api.py
+```
+
 
 ### Descrição do Projeto
 #### Coleta de Notícias Financeiras:

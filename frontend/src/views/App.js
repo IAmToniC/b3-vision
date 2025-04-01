@@ -5,12 +5,20 @@ import '../styles/App.css';
 function App() {
   const [output, setOutput] = useState('Aqui será exibido o output do programa.');
 
+  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+
   const fetchAndProcessNews = async () => {
     setOutput('Carregando e analisando notícias...');
-
+    
+    const userEmail = localStorage.getItem("userEmail");
+    if (!userEmail) {
+      setOutput('Erro: Usuário não autenticado.');
+      return;
+    }
+    
     try {
-        const response = await fetch('https://b3-vision-b.vercel.app/api/get_analysis');
-        const data = await response.json();
+      const response = await fetch(`${API_URL}/api/get_analysis?email=${encodeURIComponent(userEmail)}`);
+      const data = await response.json();
 
         if (data.message) {
             setOutput(data.message);
