@@ -51,10 +51,6 @@ def web_scrape(noti):
         {'name': 'Financial Times', 'url': 'https://www.ft.com/?format=rss'},
         {'name': 'G1', 'url': 'https://g1.globo.com/rss/g1/economia/'},
         {'name': 'UOL Economia', 'url': 'https://economia.uol.com.br/noticias/rss.xml'},
-        {'name': 'Estadão', 'url': 'https://www.estadao.com.br/rss/economia.xml'},
-        {'name': 'Valor Econômico', 'url': 'https://www.valor.com.br/rss/brasil'},
-        {'name': 'Folha de S.Paulo', 'url': 'https://feeds.folha.uol.com.br/mercado/rss091.xml'},
-        {'name': 'Exame', 'url': 'https://exame.com/feed/mercados/'}
     ]
     
     keywords = [
