@@ -50,16 +50,25 @@ def web_scrape(noti):
         {'name': 'Reuters', 'url': 'http://feeds.reuters.com/reuters/topNews'},
         {'name': 'Al Jazeera', 'url': 'http://www.aljazeera.com/xml/rss/all.xml'},
         {'name': 'Bloomberg', 'url': 'https://feeds.bloomberg.com/bloomberg/index.xml'},
-        {'name': 'Financial Times', 'url': 'https://www.ft.com/?format=rss'}
+        {'name': 'Financial Times', 'url': 'https://www.ft.com/?format=rss'},
+        {'name': 'G1', 'url': 'https://g1.globo.com/rss/g1/economia/'},
+        {'name': 'UOL Economia', 'url': 'https://economia.uol.com.br/noticias/rss.xml'},
+        {'name': 'Estadão', 'url': 'https://www.estadao.com.br/rss/economia.xml'},
+        {'name': 'Valor Econômico', 'url': 'https://www.valor.com.br/rss/brasil'},
+        {'name': 'Folha de S.Paulo', 'url': 'https://feeds.folha.uol.com.br/mercado/rss091.xml'},
+        {'name': 'Exame', 'url': 'https://exame.com/feed/mercados/'},
+        {'name': 'Agência Brasil', 'url': 'https://agenciabrasil.ebc.com.br/rss/economia/feed.xml'},
+        {'name': 'InfoMoney', 'url': 'https://www.infomoney.com.br/feed/'}
     ]
     
     keywords = [
         'b3', 'ibovespa',             
         'market', 'stock market', 'financial market',
-        'politics', 'political', 'government'        
+        'politics', 'political', 'government', 
+        'governo', 'economia', 'bolsa de valores'
     ]
     
-    num_noticias = 15 
+    num_noticias = 30 
     resultado = ""
     noticias = noti
     for site in sites:

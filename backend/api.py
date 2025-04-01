@@ -70,30 +70,30 @@ def login():
 def investment_profile():
     try:
         data = request.json
-        goal = data.get('goal')
-        risk = data.get('risk')
-        investment_time = data.get('investmentTime')
-        age = data.get('age')
-
-        if not goal or not risk or not investment_time or not age:
-            return jsonify({"message": "Todos os campos do perfil de investimento são obrigatórios!"}), 400
-
+        required_fields = [
+            "investmentMotivation", "investmentGoal", "investmentAssets", "investmentExperience", 
+            "riskTolerance", "investmentSectors", "investmentStrategy", "emergencyFund", 
+            "marketMonitoring", "decisionMaking"
+        ]
+        
+        missing_fields = [field for field in required_fields if field not in data]
+        if missing_fields:
+            return jsonify({"message": f"Campos obrigatórios ausentes: {', '.join(missing_fields)}"}), 400
+        
+        email = data.get("email")
+        if not email:
+            return jsonify({"message": "Campo 'email' é obrigatório!"}), 400
+        
         users_collection.update_one(
-            {"email": data.get("email")},
-            {"$set": {
-                "investmentProfile": {
-                    "goal": goal,
-                    "risk": risk,
-                    "investmentTime": investment_time,
-                    "age": age
-                }
-            }},
+            {"email": email},
+            {"$set": {"investmentProfile": data}},
             upsert=True
         )
+        
         return jsonify({"message": "Perfil de investimento salvo com sucesso!"}), 201
-
+    
     except Exception as e:
         return jsonify({"message": f"Erro interno: {str(e)}"}), 500
-    
+
 if __name__ == "__main__":
     app.run(debug=True)

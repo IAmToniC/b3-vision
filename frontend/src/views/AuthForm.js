@@ -31,7 +31,6 @@ function AuthForm({ onLogin }) {
         if (response.ok) {
           setAlert({ message: data.message, color: "#55b855" });
           setIsRegistering(false);
-          setEmail("");
           setPassword("");
           setIsModalOpen(true);
         } else {
@@ -52,6 +51,7 @@ function AuthForm({ onLogin }) {
         const data = await response.json();
         if (response.ok) {
           setAlert({ message: data.message, color: "#55b855" });
+          localStorage.setItem("userEmail", Email);
           onLogin();
         } else {
           setAlert({ message: data.message, color: "#e27c28" });
@@ -128,6 +128,7 @@ function AuthForm({ onLogin }) {
       <InvestmentProfileModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
+        userEmail={Email}
       />
     </div>
   );

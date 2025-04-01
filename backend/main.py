@@ -34,7 +34,8 @@ def query(investment_profile_data=None):
     Após a análise geral da B3 você deve fazer uma análise de notícias com base no perfil do usuário (utilize um tom empático e encorajador, adicione também um exemplo prático e faça recomendações, não é necessário muita formalidade), coloque isso:
     Se o usuário não fornecer nenhum dado de perfil você deve ignorar o feedback personalizado.
     **Feedback Personalizado**:
-    Use os dados do perfil seguinte: {perfil}
+    Use os dados do perfil seguinte: 
+    {perfil}
     Dito isso você deve separar sua resposta nos seguintes tópicos:
     - Feedback Geral
     - Exemplo Prático

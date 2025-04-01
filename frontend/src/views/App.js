@@ -9,10 +9,16 @@ function App() {
 
   const fetchAndProcessNews = async () => {
     setOutput('Carregando e analisando notícias...');
-
+    
+    const userEmail = localStorage.getItem("userEmail");
+    if (!userEmail) {
+      setOutput('Erro: Usuário não autenticado.');
+      return;
+    }
+    
     try {
-        const response = await fetch(`${API_URL}/api/get_analysis`);
-        const data = await response.json();
+      const response = await fetch(`${API_URL}/api/get_analysis?email=${encodeURIComponent(userEmail)}`);
+      const data = await response.json();
 
         if (data.message) {
             setOutput(data.message);
