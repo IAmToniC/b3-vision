@@ -49,8 +49,6 @@ def web_scrape(noti):
         {'name': 'Fox News', 'url': 'http://feeds.foxnews.com/foxnews/latest'},
         {'name': 'Bloomberg', 'url': 'https://feeds.bloomberg.com/bloomberg/index.xml'},
         {'name': 'Financial Times', 'url': 'https://www.ft.com/?format=rss'},
-        {'name': 'G1', 'url': 'https://g1.globo.com/rss/g1/economia/'},
-        {'name': 'UOL Economia', 'url': 'https://economia.uol.com.br/noticias/rss.xml'}
     ]
     
     keywords = [
@@ -60,7 +58,7 @@ def web_scrape(noti):
         'governo', 'economia', 'bolsa de valores'
     ]
     
-    num_noticias = 3 
+    num_noticias = 5 
     resultado = ""
     noticias = noti
     for site in sites:
