@@ -59,7 +59,7 @@ def web_scrape(noti):
         {'name': 'New York Times', 'url': 'https://rss.nytimes.com/services/xml/rss/nyt/World.xml'},
         {'name': 'Fox News', 'url': 'http://feeds.foxnews.com/foxnews/latest'},
         {'name': 'Bloomberg', 'url': 'https://feeds.bloomberg.com/bloomberg/index.xml'},
-        {'name': 'Financial Times', 'url': 'https://www.ft.com/?format=rss'}
+        {'name': 'Financial Times', 'url': 'https://www.ft.com/?format=rss'},
         {'name': 'G1', 'url': 'https://g1.globo.com/rss/g1/economia/'},
         {'name': 'UOL Economia', 'url': 'https://economia.uol.com.br/noticias/rss.xml'}
         # {'name': 'Estadão', 'url': 'https://www.estadao.com.br/rss/economia.xml'},
