@@ -60,7 +60,7 @@ def web_scrape(noti):
         'governo', 'economia', 'bolsa de valores'
     ]
     
-    num_noticias = 10 
+    num_noticias = 3 
     resultado = ""
     noticias = noti
     for site in sites:
