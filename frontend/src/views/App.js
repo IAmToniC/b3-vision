@@ -5,7 +5,7 @@ import '../styles/App.css';
 function App() {
   const [output, setOutput] = useState('Aqui será exibido o output do programa.');
 
-  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+  const API_URL = process.env.REACT_APP_API_URL || "https://b3-vision-b.vercel.app";
 
   const fetchAndProcessNews = async () => {
     setOutput('Carregando e analisando notícias...');
@@ -61,6 +61,7 @@ function App() {
           <span>Ana Sofia da Silva Moura</span>
           <span>Elisson Dias de Oliveira</span>
           <span>Gabriel Fonseca de Oliveira</span>
+          <span>Layla Beatriz Batista dos Santos</span>
           <span>Renan Santana Costa</span>
           <span>Toni Cabral Amorim</span>
         </div>

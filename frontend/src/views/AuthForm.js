@@ -10,7 +10,7 @@ function AuthForm({ onLogin }) {
   const [alertMessage, setAlert] = useState({ message: "", color: "" });
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+  const API_URL = process.env.REACT_APP_API_URL || "https://b3-vision-b.vercel.app";
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -120,6 +120,7 @@ function AuthForm({ onLogin }) {
         <div className="members">
           <span>Ana Sofia da Silva Moura</span>
           <span>Elisson Dias de Oliveira</span>
+          <span>Layla Beatriz Batista dos Santos</span>
           <span>Gabriel Fonseca de Oliveira</span>
           <span>Renan Santana Costa</span>
           <span>Toni Cabral Amorim</span>

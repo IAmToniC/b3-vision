@@ -5,7 +5,7 @@ function InvestmentProfileModal({ isOpen, onClose, userEmail }) {
   const [currentPage, setCurrentPage] = useState(0);
   const [responses, setResponses] = useState({});
 
-  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+  const API_URL = process.env.REACT_APP_API_URL || "https://b3-vision-b.vercel.app";
 
   const questions = [
     {
