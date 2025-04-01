@@ -47,8 +47,6 @@ def web_scrape(noti):
         {'name': 'BBC', 'url': 'http://feeds.bbci.co.uk/news/world/rss.xml'},
         {'name': 'New York Times', 'url': 'https://rss.nytimes.com/services/xml/rss/nyt/World.xml'},
         {'name': 'Fox News', 'url': 'http://feeds.foxnews.com/foxnews/latest'},
-        {'name': 'Reuters', 'url': 'http://feeds.reuters.com/reuters/topNews'},
-        {'name': 'Al Jazeera', 'url': 'http://www.aljazeera.com/xml/rss/all.xml'},
         {'name': 'Bloomberg', 'url': 'https://feeds.bloomberg.com/bloomberg/index.xml'},
         {'name': 'Financial Times', 'url': 'https://www.ft.com/?format=rss'},
         {'name': 'G1', 'url': 'https://g1.globo.com/rss/g1/economia/'},
@@ -56,9 +54,7 @@ def web_scrape(noti):
         {'name': 'Estadão', 'url': 'https://www.estadao.com.br/rss/economia.xml'},
         {'name': 'Valor Econômico', 'url': 'https://www.valor.com.br/rss/brasil'},
         {'name': 'Folha de S.Paulo', 'url': 'https://feeds.folha.uol.com.br/mercado/rss091.xml'},
-        {'name': 'Exame', 'url': 'https://exame.com/feed/mercados/'},
-        {'name': 'Agência Brasil', 'url': 'https://agenciabrasil.ebc.com.br/rss/economia/feed.xml'},
-        {'name': 'InfoMoney', 'url': 'https://www.infomoney.com.br/feed/'}
+        {'name': 'Exame', 'url': 'https://exame.com/feed/mercados/'}
     ]
     
     keywords = [
